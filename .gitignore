@@ -1,0 +1,6 @@
+# Build output and local KideRT packages
+build/
+krt-*/
+KRT-*/
+*.a
+krt/
