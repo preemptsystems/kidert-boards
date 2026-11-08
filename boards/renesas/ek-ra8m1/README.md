@@ -16,17 +16,31 @@ type on the console, toggling the green LED (LED2) on each character.
 
 ## Build
 
-From this folder, with `KRT` set to the unpacked package:
+1. Unpack the evaluation package:
 
-```bash
-mkdir -p krt
-cp -R $KRT/krt/include krt/
-cp $KRT/krt/libkrt-*.a libkrt.a
-cmake -B build -G Ninja
-ninja -C build
-```
+   ```bash
+   tar xzf krt-<version>-armv8.1-m.main-eval.tar.gz
+   ```
 
-With a licensed package, the library is `$KRT/build/krt/libkrt.a`.
+2. Copy the kernel library and headers into this folder. `KRT` is the
+   unpacked package:
+
+   ```bash
+   cd boards/renesas/ek-ra8m1
+   KRT=/path/to/krt-<version>-armv8.1-m.main-eval
+   mkdir -p krt
+   cp -R $KRT/krt/include krt/
+   cp $KRT/krt/libkrt-*.a libkrt.a
+   ```
+
+   With a licensed package, the library is `$KRT/build/krt/libkrt.a`.
+
+3. Build:
+
+   ```bash
+   cmake -B build -G Ninja
+   ninja -C build
+   ```
 
 ## Flash and run
 
