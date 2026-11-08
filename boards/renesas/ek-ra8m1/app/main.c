@@ -122,11 +122,11 @@ int main(void)
     krt_bsp_init();
 
     /* SysTick runs from the core clock SystemInit() has just set. */
-    if (krt_systimer_configure(krt_bsp_systickreload,
-                               krt_bsp_systickgetcount,
+    if (krt_systimer_configure(krt_bsp_systimerreload,
+                               krt_bsp_systimergetcount,
                                APP_SYSTICK_MAX_PERIOD,
                                (krt_s32_t)board_cpu_hz(),
-                               KRT_BSP_SYSTICK_IRQN) != 0)
+                               KRT_BSP_SYSTIMER_IRQN) != 0)
     {
         board_led_set(BOARD_LED_RED, 1);
         return -1;

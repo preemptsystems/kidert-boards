@@ -4,9 +4,6 @@
 /*
  * KideRT BSP for the EK-RA8M1: board start-up and the System Timer, which is
  * the Cortex-M SysTick running from the core clock.
- *
- * The kernel also calls bsp_faulthook(), which krt.h declares and
- * board/krt_bsp.c defines.
  */
 
 #ifndef KRT_BSP_H
@@ -15,7 +12,7 @@
 #include "krt.h"
 
 /** SysTick's exception number, for krt_systimer_configure(). */
-#define KRT_BSP_SYSTICK_IRQN    (-1)
+#define KRT_BSP_SYSTIMER_IRQN    (-1)
 
 /**
  * @brief Set up the board: pins, LEDs and the console. Call once from
@@ -29,11 +26,18 @@ void      krt_bsp_init(void);
  * @param period    Cycles until the next System Timer interrupt; at most
  *                  0xFFFFFF.
  */
-void      krt_bsp_systickreload(krt_u64_t period);
+void      krt_bsp_systimerreload(krt_u64_t period);
 
 /**
  * @brief Cycles left in the current System Timer period.
  */
-krt_u64_t krt_bsp_systickgetcount(void);
+krt_u64_t krt_bsp_systimergetcount(void);
+
+/**
+ * @brief Fault hook the kernel calls for every fault it handles.
+ *
+ * @return KRT_FAULT_HOOK_DEFAULT to carry on as the kernel decided.
+ */
+krt_u32_t krt_bsp_faulthook(krt_u32_t reason, pthread_t thread, krt_u32_t address, krt_u32_t pc, krt_u32_t status);
 
 #endif /* KRT_BSP_H */

@@ -14,7 +14,7 @@
 void SysTick_Handler(void);
 
 
-void krt_bsp_systickreload(krt_u64_t period)
+void krt_bsp_systimerreload(krt_u64_t period)
 {
     SysTick->CTRL = 0u;
     SysTick->LOAD = (uint32_t)period & SysTick_LOAD_RELOAD_Msk;
@@ -23,7 +23,7 @@ void krt_bsp_systickreload(krt_u64_t period)
 }
 
 
-krt_u64_t krt_bsp_systickgetcount(void)
+krt_u64_t krt_bsp_systimergetcount(void)
 {
     return SysTick->VAL;
 }
@@ -42,7 +42,7 @@ void SysTick_Handler(void)
  * @brief Fault hook the kernel calls for every fault it handles. The board
  * records nothing and lets the kernel carry on as it decided.
  */
-krt_u32_t bsp_faulthook(krt_u32_t reason, pthread_t thread, krt_u32_t address, krt_u32_t pc, krt_u32_t status)
+krt_u32_t krt_bsp_faulthook(krt_u32_t reason, pthread_t thread, krt_u32_t address, krt_u32_t pc, krt_u32_t status)
 {
     (void)reason;
     (void)thread;
