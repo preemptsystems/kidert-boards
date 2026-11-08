@@ -1,0 +1,4 @@
+# Vendored Renesas files: store byte for byte (CRLF line endings), never convert.
+* -text
+README.md text
+.gitattributes text

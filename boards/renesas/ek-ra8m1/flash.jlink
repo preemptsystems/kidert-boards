@@ -1,0 +1,5 @@
+r
+loadfile build/app.hex
+r
+g
+qc

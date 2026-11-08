@@ -14,6 +14,7 @@ package, contact Preempt Systems Oy at contact@preemptsystems.com.
 
 | Board | Core | Architecture | Application |
 |-------|------|-------------|-------------|
+| [Renesas EK-RA8M1](boards/renesas/ek-ra8m1) | Cortex-M85 | `armv8.1-m.main` | LED blink, console echo |
 
 Boards are added to this table as they are brought up.
 
@@ -74,11 +75,13 @@ boards/
         ├── app/          the application
         ├── libkrt.a      copied from the KideRT package
         └── krt/include/  copied from the KideRT package
+third_party/              unmodified vendor files, e.g. device headers
 arm-none-eabi.cmake       toolchain file
 ```
 
 ## License
 
 The contents of this repository are licensed under the Apache License 2.0; see
-[LICENSE](LICENSE). Vendor files keep the license stated in their headers.
-KideRT is licensed separately under its own terms.
+[LICENSE](LICENSE). Vendor files keep the license stated in their headers, and
+each folder under `third_party/` carries its vendor's license file. KideRT is
+licensed separately under its own terms.
