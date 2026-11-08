@@ -73,9 +73,9 @@ boards/
         ├── CMakeLists.txt
         ├── board/        the BSP: startup, clocks, pins, console, LEDs, linker script
         ├── app/          the application
+        ├── third_party/  unmodified vendor files, e.g. device headers
         ├── libkrt.a      copied from the KideRT package
         └── krt/include/  copied from the KideRT package
-third_party/              unmodified vendor files, e.g. device headers
 arm-none-eabi.cmake       toolchain file
 ```
 
@@ -83,5 +83,5 @@ arm-none-eabi.cmake       toolchain file
 
 The contents of this repository are licensed under the Apache License 2.0; see
 [LICENSE](LICENSE). Vendor files keep the license stated in their headers, and
-each folder under `third_party/` carries its vendor's license file. KideRT is
-licensed separately under its own terms.
+each vendor folder under a board's `third_party/` carries that vendor's license
+file. KideRT is licensed separately under its own terms.

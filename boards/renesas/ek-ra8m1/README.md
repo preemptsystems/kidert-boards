@@ -3,7 +3,7 @@
 KideRT on the Renesas [EK-RA8M1](https://www.renesas.com/en/design-resources/boards-kits/ek-ra8m1)
 evaluation kit: R7FA8M1AH, Arm Cortex-M85 at 480 MHz. The board code is
 written against Renesas's register definitions
-([third_party/renesas](../../../third_party/renesas)) and needs no other
+([third_party/renesas](third_party/renesas)) and needs no other
 Renesas software. No Renesas tool is needed to build or flash.
 
 The application runs two threads:
@@ -88,6 +88,7 @@ board/
 ├── board_private.h  the device header plus declarations shared by the files above
 └── ra8m1.ld         linker script, with the kernel's heap and thread stack pool
 app/main.c           the application
+third_party/         Renesas device header and Arm CMSIS-Core headers, unmodified
 libkrt.a             copied from the KideRT package
 krt/include/         copied from the KideRT package
 ```
@@ -112,5 +113,5 @@ krt/include/         copied from the KideRT package
 `third_party/renesas` is BSD-3-Clause and `third_party/arm/cmsis` is
 Apache-2.0; each folder carries its license. If you hand out a binary built
 from this board, include Renesas's
-[LICENSE.md](../../../third_party/renesas/LICENSE.md) with it. This folder is
-Apache-2.0.
+[LICENSE.md](third_party/renesas/LICENSE.md) with it. The rest of this folder
+is Apache-2.0.

@@ -18,4 +18,4 @@ converting them.
 1. Download the new release from <https://github.com/renesas/fsp/releases>.
 2. Copy over each file in `Include/` from the folder above, plus `LICENSE.md`
    from the release's top folder.
-3. Update the version and commit above and rebuild the boards.
+3. Update the version and commit above and rebuild the board.

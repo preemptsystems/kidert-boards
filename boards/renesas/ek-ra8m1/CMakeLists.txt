@@ -30,16 +30,15 @@ add_executable(app.elf
 
 target_include_directories(app.elf PRIVATE board)
 target_include_directories(app.elf SYSTEM PRIVATE
-    krt/include krt/include/posix
-    ../../../third_party/renesas/Include
-    ../../../third_party/arm/cmsis/Core/Include)
+    krt/include
+    third_party/renesas/Include
+    third_party/arm/cmsis/Core/Include)
 target_compile_options(app.elf PRIVATE -Wall -Wextra)
 target_link_libraries(app.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/libkrt.a)
 target_link_options(app.elf PRIVATE
     -T${CMAKE_CURRENT_SOURCE_DIR}/board/ra8m1.ld
     -nostartfiles               # Reset_Handler is the entry, not crt0
     --specs=nano.specs
-    --specs=nosys.specs
     -Wl,--gc-sections
     -Wl,-Map=app.map
     -Wl,--print-memory-usage)
