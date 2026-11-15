@@ -7,7 +7,8 @@
  *
  * The console sends by polling the 16-byte transmit FIFO and receives by
  * interrupt: the receive handler queues the characters and wakes the console
- * thread with krt_thread_notify().
+ * thread with krt_irq_notify(). The console thread attaches to the receive
+ * interrupt with krt_irq_attach() and waits in krt_irq_wait().
  */
 
 #include <string.h>
@@ -185,7 +186,7 @@ void board_sci9_rxi_isr(void)
     }
     CONSOLE_SCI->CFCLR = 1u << R_SCI_B0_CFCLR_RDRFC_Pos;
 
-    krt_thread_notify(CONSOLE_EVENT_RX);
+    krt_irq_notify(CONSOLE_EVENT_RX);
 }
 
 
@@ -239,7 +240,7 @@ void board_led_toggle(uint32_t led)
 
 int board_console_attach(void)
 {
-    return (int)krt_thread_irqattach((krt_u32_t)SCI9_RXI_IRQn);
+    return (int)krt_irq_attach((krt_u32_t)SCI9_RXI_IRQn);
 }
 
 
@@ -267,7 +268,7 @@ char board_console_getc(void)
 
     while (console_rx_head == tail)
     {
-        (void)krt_thread_wait();
+        (void)krt_irq_wait();
     }
 
     char c = (char)console_rx[tail & (CONSOLE_RX_SIZE - 1u)];

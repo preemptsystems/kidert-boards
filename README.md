@@ -29,7 +29,7 @@ You need the [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-t
    With the evaluation package, unpack it:
 
    ```bash
-   tar xzf krt-<version>-<arch>-eval.tar.gz
+   tar xzf KideRT-<version>-<arch>-eval.tar.gz
    ```
 
    With a licensed package, set it up for the board's core as its README
@@ -46,7 +46,7 @@ You need the [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-t
 
    ```bash
    cd boards/<vendor>/<board>
-   KRT=/path/to/krt-<version>-<arch>-eval
+   KRT=/path/to/KideRT-<version>-<arch>-eval
    mkdir -p krt
    cp -R $KRT/krt/include krt/
    cp $KRT/krt/libkrt-*.a libkrt.a

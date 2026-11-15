@@ -29,9 +29,11 @@ void PendSV_Handler(void);
 /* KideRT BSP (board/krt_bsp.c). */
 void SysTick_Handler(void);
 
+/* KideRT defines it when it runs in the Secure state, as it does here. */
+void SecureFault_Handler(void) __attribute__((weak, alias("Default_Handler")));
+
 /* Not used on this board. */
 void NMI_Handler(void)         __attribute__((weak, alias("Default_Handler")));
-void SecureFault_Handler(void) __attribute__((weak, alias("Default_Handler")));
 void DebugMon_Handler(void)    __attribute__((weak, alias("Default_Handler")));
 
 const exc_ptr_t __Vectors[VECTOR_COUNT] __attribute__((section(".vectors"), used)) =

@@ -30,7 +30,7 @@ typedef enum IRQn
     SysTick_IRQn            = -1,
 
     /* Peripheral lines; board.c routes an ICU event to each. The number is
-     * also what a KideRT thread passes to krt_thread_irqattach(). */
+     * also what a KideRT thread passes to krt_irq_attach(). */
     SCI9_RXI_IRQn           = 0,
     SCI9_ERI_IRQn           = 1,
 } IRQn_Type;

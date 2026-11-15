@@ -49,14 +49,13 @@ SECTIONS
         __exidx_end = .;
     } > FLASH
 
-    /* Thread stacks, aligned as KideRT asks. First in RAM so the alignment
-     * leaves no gap at the origin. */
+    /* Static thread stacks, aligned as KideRT asks. First in RAM so the
+     * alignment leaves no gap at the origin. */
     .krt_stackpool (NOLOAD) :
     {
         . = ALIGN(8);
         __krt_stackpool_start__ = .;
-        KEEP(*(SORT_BY_ALIGNMENT(.krt_stackpool)))
-        KEEP(*(SORT_BY_ALIGNMENT(.krt_stackpool.*)))
+        KEEP(*(SORT_BY_ALIGNMENT(.krt_stackpool*)))
         . = ALIGN(8);
         __krt_stackpool_end__ = .;
     } > RAM

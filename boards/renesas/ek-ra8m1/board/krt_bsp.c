@@ -2,16 +2,21 @@
 /* Copyright (c) 2026 Preempt Systems Oy */
 
 /*
- * KideRT BSP for the EK-RA8M1: the System Timer on SysTick and the fault
- * hook. krt_bsp_init() is in board/board.c.
+ * KideRT BSP for the EK-RA8M1: the System Timer on SysTick, the fault hook
+ * and the kernel console. krt_bsp_init() is in board/board.c.
  */
 
 #include "krt.h"
 
+#include "board.h"
 #include "board_private.h"
 #include "krt_bsp.h"
 
 void SysTick_Handler(void);
+
+krt_u32_t       krt_bsp_systimer_hz         = BOARD_CPU_HZ;
+const krt_u64_t krt_bsp_systimer_max_period = SysTick_LOAD_RELOAD_Msk;
+const krt_s32_t krt_bsp_systimer_irqn       = (krt_s32_t)SysTick_IRQn;
 
 
 void krt_bsp_systimerreload(krt_u64_t period)
@@ -51,4 +56,14 @@ krt_u32_t krt_bsp_faulthook(krt_u32_t reason, pthread_t thread, krt_u32_t addres
     (void)status;
 
     return KRT_FAULT_HOOK_DEFAULT;
+}
+
+
+/**
+ * @brief Kernel console output, such as the boot banner, on the board
+ * console. Replaces the library's weak no-op.
+ */
+void krt_console_puts(const char *str)
+{
+    board_console_puts(str);
 }

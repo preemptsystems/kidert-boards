@@ -30,7 +30,7 @@ void     board_led_toggle(uint32_t led);
  * console's receive notifications. Call it once, from the one thread that
  * reads the console.
  *
- * @return 0 on success, an error number from krt_thread_irqattach() otherwise.
+ * @return 0 on success, an error number from krt_irq_attach() otherwise.
  */
 int      board_console_attach(void);
 
